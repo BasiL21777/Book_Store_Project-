@@ -1,0 +1,487 @@
+body header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color: rgba(227, 230, 243, 255);
+    box-shadow: 0 1px 15px rgba(217, 208, 208, 0.792);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+
+body header .logo {
+    width: 80px;
+    margin-left: 20px;
+}
+body header #avatar{
+    width: 55px;
+    height: 55px;
+    border: 3px solid cadetblue;
+    border-radius: 600px;
+    margin-left: 15px;
+}
+
+body header div{
+    display: flex;
+}
+
+
+#NavBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#NavBar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#NavBar li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#NavBar li a:hover,
+#NavBar li a.active {
+    color: cadetblue;
+    transition: .9s ease;
+}
+
+#NavBar li a.active::after,
+#NavBar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    position: absolute;
+    background-color: cadetblue;
+    bottom: -4px;
+    left: 20px;
+}
+
+
+footer .cols {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+footer .cols .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+
+footer .cols .col .icons_follow a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+footer .cols .col .Icons_Apps a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+footer .cols .col .Icons_payment a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+footer .cols .col .icons_follow a:hover {
+    color: cadetblue;
+    transition: 1s ease;
+}
+
+footer .cols .col .Icons_Apps a:hover {
+    color: cadetblue;
+    transition: 1s ease;
+}
+
+footer .cols .col .Icons_payment a:hover {
+    color: cadetblue;
+    transition: 1s ease;
+}
+
+footer .cols .col a {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+
+footer .cols .col a:hover {
+    color: cadetblue;
+    transition: 1s ease;
+}
+
+footer .cols .col {
+    align-items: flex-start;
+}
+
+footer p {
+    color: cadetblue;
+    text-align: center;
+}
+
+footer {
+    background-color: rgba(227, 230, 243, 255);
+    margin-bottom: -100px;
+    padding: 0;
+    margin-top: 35px;
+    top: 100%;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100hv;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#books table {
+    width: 100%;
+    white-space: nowrap;
+    table-layout: fixed;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 1px 1px 5px gainsboro;
+}
+
+
+
+#books table img {
+    width: 60px;
+
+}
+
+
+#books table input {
+    width: 40px;
+}
+
+
+#books table input:hover {
+    box-shadow: 1px 1px 3px cadetblue;
+}
+
+#books table .delete {
+    color: black;
+    font-size: 20px;
+}
+
+#books table .delete:hover {
+    color: cadetblue;
+    text-shadow: .002em .002em 3px black;
+}
+
+
+#books table .edit {
+    color: black;
+    font-size: 20px;
+}
+
+#books table .edit:hover {
+    color: cadetblue;
+    text-shadow: .002em .002em 3px black;
+}
+
+#books table td:nth-child(1) {
+    width: 7%;
+    text-align: center;
+}
+
+#books table td:nth-child(2) {
+    width: 5%;
+    text-align: center;
+}
+
+#books table td:nth-child(3) {
+    width: 10%;
+    text-align: center;
+}
+
+#books table :nth-child(4) {
+    width: 5%;
+    text-align: center;
+}
+
+#books table :nth-child(5) {
+    width: 10%;
+    text-align: center;
+}
+
+#books table :nth-child(6) {
+    width: 5%;
+    text-align: center;
+}
+#books table :nth-child(7) {
+    width: 10%;
+    text-align: center;
+}
+#books table :nth-child(8) {
+    width: 10%;
+    text-align: center;
+}
+
+#books {
+    overflow: auto;
+    height: 400px;
+    text-align: center;
+    margin: 25px;
+    width: 95%;
+    border: 2px solid gainsboro;
+    border-radius: 10px;
+
+}
+
+#books:hover{
+box-shadow: 3px 3px 10px cadetblue , 3px 3px 10px cadetblue  ;
+}
+
+
+#books thead td {
+    font-weight: 800;
+    padding: 18px 0;
+}
+
+#books tbody td {
+    padding: 15px 0;
+}
+
+
+
+
+
+
+
+
+
+
+#user table {
+    width: 100%;
+    white-space: nowrap;
+    table-layout: fixed;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 1px 1px 5px gainsboro;
+}
+
+
+
+#user table img {
+    width: 60px;
+
+}
+
+
+#user table input {
+    width: 40px;
+}
+
+
+#books table input:hover {
+    box-shadow: 1px 1px 3px cadetblue;
+}
+
+#user table .delete {
+    color: black;
+    font-size: 20px;
+}
+
+#user table .delete:hover {
+    color: cadetblue;
+    text-shadow: .002em .002em 3px black;
+}
+
+
+#user table .edit {
+    color: black;
+    font-size: 20px;
+}
+
+#books table .edit:hover {
+    color: cadetblue;
+    text-shadow: .002em .002em 3px black;
+}
+
+#user table td:nth-child(1) {
+    width: 14%;
+    text-align: center;
+}
+
+#user table td:nth-child(2) {
+    width: 15%;
+    text-align: center;
+}
+
+#user table td:nth-child(3) {
+    width: 18%;
+    text-align: center;
+}
+
+#user table :nth-child(4) {
+    width: 14%;
+    text-align: center;
+}
+
+#user table :nth-child(5) {
+    width: 16%;
+    text-align: center;
+}
+
+#user table :nth-child(6) {
+    width: 14%;
+    text-align: center;
+}
+
+#user {
+    overflow: auto;
+    height: 400px;
+    text-align: center;
+    margin: 25px;
+    width: 95%;
+    border: 2px solid gainsboro;
+    border-radius: 10px;
+
+}
+
+#user:hover{
+box-shadow: 3px 3px 10px cadetblue , 3px 3px 10px cadetblue  ;
+}
+
+
+#user thead td {
+    font-weight: 800;
+    padding: 18px 0;
+}
+
+#user tbody td {
+    padding: 15px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#search{
+    align-items: center;
+}
+
+#search_box .search {
+    width: 250px;
+    border: none;
+height: 28px;
+border: 1px solid gainsboro;
+border-radius: 15px;
+text-align: center;
+font-size: 15px ;
+
+}
+.search:focus {
+    box-shadow: 2px 2px 10px cadetblue;
+}
+ .search:hover {
+    box-shadow: 2px 2px 10px cadetblue;
+    }
+.button{
+    margin-left:6px;
+    width: 75px;
+    background-color:cadetblue ;
+    border-radius: 15px;
+    padding: 5px 5px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#search_box .button:hover{
+    box-shadow: 2px 2px 10px cadetblue;
+
+}
+
+#search_box a{
+    margin-left:6px;
+    width: 100px;
+    height: 100px;
+    background-color:cadetblue ;
+    border-radius: 15px;
+    padding: 5px 5px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+#search_box a:hover{
+    box-shadow: 2px 2px 10px cadetblue;
+
+}
+
+.content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.analytics{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.analytics .boxs{
+display: flex;
+flex-wrap: wrap;
+align-content: center;
+justify-content: space-between;
+margin-left: 5%;
+margin-right: 5%;
+}
+
+.analytics .boxs div{
+    background-color: cadetblue;
+    width: 300px;
+    height: 200px;
+    border: 2px solid gainsboro;
+    border-radius: 10px;
+    color: aliceblue;
+}
+
+.analytics .boxs div:hover{
+box-shadow: 3px 3px 10px cadetblue;
+border-color: cadetblue;
+}
+
+
+.analytics .boxs div h1{
+font-size: 30px;
+margin-top: 10%;
+}
+.analytics .boxs div p{
+font-size: 50px;
+margin-top: 0px;
+}
+
