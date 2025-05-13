@@ -1,4 +1,17 @@
 <?php
+
+session_start();
+
+// Check if user is logged in and has admin role
+if (empty($_SESSION['id'])) {
+    header("Location: login.php");
+    exit;
+}
+if ($_SESSION['role'] !== 'A') {
+    header("Location: shop.php");
+    exit;
+}
+
 // check the method which user used is post (click submit)
 $error_Fields = array();
 
@@ -8,19 +21,19 @@ $error_Fields = array();
 echo(var_dump($_POST));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    #validation 
-    // if the name is empty 
+    #validation
+    // if the name is empty
     if (!(isset($_POST["title"]) && !empty($_POST["title"]))) {
-        $error_Fields[] = "title"; # append 
+        $error_Fields[] = "title"; # append
     }
     if (!(isset($_POST["price"]) && !empty($_POST["price"]))) {
-        $error_Fields[] = "price"; # append 
+        $error_Fields[] = "price"; # append
     }
     if (!(isset($_POST["author"]) && !empty($_POST["author"]))) {
-        $error_Fields[] = "author"; # append 
+        $error_Fields[] = "author"; # append
     }
     if (!(isset($_POST["description"]) && !empty($_POST["description"]))) {
-        $error_Fields[] = "description"; # append 
+        $error_Fields[] = "description"; # append
     }
 
 
@@ -65,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // there is no errors
     if (!$error_Fields) {
         // create connection
-        $conn = mysqli_connect("Localhost", "root", "", "Book_Store");
+        $conn = mysqli_connect("Localhost", "root", "", "book_store");
 
-        // prepare data 
+        // prepare data
         // to escape special char to avoid sql injection
         $title = mysqli_escape_string($conn, $_POST["title"]);
         $price = mysqli_escape_string($conn, $_POST["price"]);
@@ -164,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Output each category as a list item
                 echo "<ul>";
                 while ($row = $result->fetch_assoc()) {
-              
+
                     echo "<input type='radio' name='category' value='" . $row['id'] . "'>" . $row["name"] . "<br>";
                 }
                 echo "</ul>";

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = mysqli_connect("Localhost", "root", "", "Book_store");
+$conn = mysqli_connect("Localhost", "root", "", "book_store");
 if (!$conn) {
     echo mysqli_connect_error();
     exit;
@@ -120,9 +120,9 @@ $Book_Arr = mysqli_fetch_assoc($result_book);
             FROM books b
             JOIN categories c ON b.category_id = c.id
             WHERE b.id != " . $Book_Arr['id'] . " AND b.category_id = " . $Book_Arr['category_id'];
-  
+
   $result_book = mysqli_query($conn, $query);
-  
+
             while ($Book_Arr = mysqli_fetch_assoc($result_book)) {
                 ?>
 

@@ -2,7 +2,7 @@
 
 session_start();
 
-$conn = mysqli_connect("Localhost", "root", "", "Book_store");
+$conn = mysqli_connect("Localhost", "root", "", "book_store");
 if (!$conn) {
     echo mysqli_connect_error();
     exit;

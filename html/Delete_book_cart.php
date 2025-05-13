@@ -5,7 +5,7 @@
 
 
 
-# receive the ID 
+# receive the ID
 $conn=mysqli_connect("Localhost","root","","book_store");
 
 

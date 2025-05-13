@@ -5,7 +5,7 @@
 
 
 
-# receive the ID 
+# receive the ID
 $conn=mysqli_connect("Localhost","root","","book_store");
 
 
@@ -27,7 +27,7 @@ if($id){
     $image_path =$_SERVER['DOCUMENT_ROOT'] . $row['cover_image'];
 
     echo $image_path;
-    
+
     // Delete the file from the uploaded folder
     if (file_exists($image_path)) {
         unlink($image_path);

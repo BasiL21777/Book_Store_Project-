@@ -2,21 +2,22 @@
 
 session_start();
 
-if(empty($_SESSION['id'])){
+// Check if user is logged in and has admin role
+if (empty($_SESSION['id'])) {
     header("Location: login.php");
-
+    exit;
 }
-
-
-
-
-
-$conn=mysqli_connect("Localhost","root","","Book_store");
-if(!$conn){
-    echo mysqli_connect_error();
+if ($_SESSION['role'] !== 'A') {
+    header("Location: shop.php");
     exit;
 }
 
+// Database connection
+$conn = mysqli_connect("localhost", "root", "", "book_store");
+if (!$conn) {
+    echo mysqli_connect_error();
+    exit;
+}
 ?>
 
 
@@ -41,8 +42,8 @@ if(!$conn){
                 <li><a href="logout.php">Log out</a></li>
 
             </ul>
-            <a href="../media/avatar/WhatsApp Image 2024-04-28 at 17.29.22_9df423cb.jpg"> <img
-                    src="../media/avatar/WhatsApp Image 2024-04-28 at 17.29.22_9df423cb.jpg" alt="avatar" class="active"
+            <a href="../media/avatar/Admin.jpg"> <img
+                    src="../media/avatar/Admin.jpg" alt="avatar" class="active"
                     id="avatar"></a>
         </div>
     </header>
@@ -55,11 +56,11 @@ if(!$conn){
             <h2>Analytics</h2>
         <div class="boxs">
             <div>
-                <?php 
+                <?php
                 $query = "SELECT COUNT(*) AS total FROM books";
                 $result = mysqli_query($conn, $query);
                 $total_books = mysqli_fetch_assoc($result);
-                
+
                 ?>
                 <h1>#Books</h1>
                 <p><?= $total_books['total']?></p>
@@ -69,7 +70,7 @@ if(!$conn){
                 <p>50</p>
             </div>
             <div>
-            <?php 
+            <?php
                 $query = "SELECT COUNT(*) AS total FROM users where role='c'";
                 $result = mysqli_query($conn, $query);
                 $total_books = mysqli_fetch_assoc($result);
@@ -78,23 +79,23 @@ if(!$conn){
                 <p><?= $total_books['total']?></p>
             </div>
         </section>
-        
 
-      
+
+
          <section id="books">
-            <?php 
+            <?php
             if(isset($_POST["B_Search"])){
                 $search=mysqli_escape_string($conn,$_POST["B_Search"]);
                   $qeury = "SELECT * FROM `books` WHERE (title LIKE '%".$search."%' OR author LIKE '%".$search."%')";
                 }
-                else{ 
+                else{
                 #Select all users
                 // $qeury="select * from `user` ";
                 $qeury="select * from `books` ";
-                
+
                 }
                 $result_book=mysqli_query($conn,$qeury);
-                
+
             ?>
             <h2>Books</h2>
             <form method="post" id="search_box">
@@ -102,12 +103,12 @@ if(!$conn){
    value="<?php echo !empty($_POST["B_Search"]) ? $_POST["B_Search"] : "" ?>">
         <input type="submit" value="search" class="button">
         <a href="Upload_book.php" title="add book">New</a>
-    
+
    </form>
 
             <table>
                 <thead>
-                    
+
                         <tr>
                             <td>Remove</td>
                             <td>Edit</td>
@@ -117,17 +118,17 @@ if(!$conn){
                             <td>Price</td>
                             <td>created At</td>
                             <td>Updated At</td>
-                            
+
                         </tr>
                 </thead>
-    
+
                 <tbody>
                 <?php
                 while($Book_Arr=mysqli_fetch_assoc($result_book)){
                    ?>
                     <tr>
                         <td><a href="Delete_book.php?id=<?=$Book_Arr["id"]?>"><i class="fa-solid fa-circle-minus delete"></i></a></td>
-                        <td><a href="Delete_book.php?id=<?=$Book_Arr["id"]?>"><i class="fa-solid fa-pen-to-square edit"></i></a></td>
+                        <td><a href="Edit_Book.php?id=<?=$Book_Arr["id"]?>"><i class="fa-solid fa-pen-to-square edit"></i></a></td>
                         <td><?=$Book_Arr["title"] ?></td>
                         <td><?=$Book_Arr["author"] ?></td>
                         <td><a href="<?= $Book_Arr["cover_image"]?>" target="_blank"><img src="<?= $Book_Arr["cover_image"]?>"  alt="book_img" ></a></td>
@@ -137,30 +138,30 @@ if(!$conn){
                     </tr>
 
                 <?php }?>
-                    
+
                 </tbody>
             </table>
-            
+
 
 
         </section>
-       
-    
+
+
         <section id="user">
 
-        <?php 
+        <?php
         if(isset($_POST["U_Search"])){
             $search=mysqli_escape_string($conn,$_POST["U_Search"]);
               $qeury = "SELECT * FROM `users` WHERE (name LIKE '%".$search."%' OR email LIKE '%".$search."%') and role!='A'";
             }
-            else{ 
+            else{
             #Select all users
             // $qeury="select * from `user` ";
             $qeury="select * from `users` where role!='A'";
-            
+
             }
             $result_book=mysqli_query($conn,$qeury);
-            
+
         ?>
 
 
@@ -168,14 +169,14 @@ if(!$conn){
             <form method="post" id="search_box">
                 <input type="search" placeholder="Search" class="search" name="U_Search"
                 value="<?php echo !empty($_POST["U_Search"]) ? $_POST["U_Search"] : ""; ?>"
-                > 
+                >
                     <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
                 <input type="submit" value="search" class="button" >
             </form>
-    
+
             <table>
                 <thead>
-                    
+
                         <tr>
                             <td>Remove</td>
                             <td>Edit</td>
@@ -185,21 +186,21 @@ if(!$conn){
                             <td>Modified At</td>
                         </tr>
                 </thead>
-    
+
                 <tbody>
                 <?php
                 while($user_Arr=mysqli_fetch_assoc($result_book)){
                    ?>
                     <tr>
                         <td><a href="Delete_user.php?id=<?=$user_Arr["id"]?>"><i class="fa-solid fa-circle-minus delete"></i></a></td>
-                        <td><a href="Delete_book.php?id=<?=$user_Arr["id"]?>"><i class="fa-solid fa-pen-to-square edit"></i></a></td>
+                        <td><a href="Edit_User.php?id=<?=$user_Arr["id"]?>"><i class="fa-solid fa-pen-to-square edit"></i></a></td>
                         <td><?=$user_Arr["name"] ?></td>
                         <td><?=$user_Arr["email"] ?></td>
                         <td><?=$user_Arr["created_at"] ?></td>
                         <td><?=$user_Arr["updated_at"] ?></td>
                     </tr>
 
-                <?php }?> 
+                <?php }?>
                 </tbody>
             </table>
         </section>
@@ -213,7 +214,7 @@ if(!$conn){
 
 
 
-    
+
     <footer>
         <div class="cols">
           <div class="col">
@@ -221,21 +222,21 @@ if(!$conn){
               <p><strong>Address: </strong>  Alexandria </p>
               <p><strong>Phone: </strong> +20 1097662944</p>
               <p> <strong>Hours: </strong> EveryDay: 10 am - 10 pm </p>
-        
+
           </div>
           <div class="col">
               <h3>About</h3>
               <a href="">About Us</a>
               <a href="">Privacy&Policy</a>
           </div>
-          
+
           <div class="col">
               <h3>Support</h3>
               <a href="">Sign UP</a>
               <a href="">Help</a>
           </div>
-  
-          
+
+
           <div class="col">
               <h3>App</h3>
             <div class="Icons_Apps">
@@ -253,12 +254,12 @@ if(!$conn){
                   <a href="" title="YouTube Page"><i class="fa-brands fa-youtube"></i></a>
                   <a href="" title="X Page"><i class="fa-brands fa-x-twitter"></i></a>
               </div>
-          </div>   
+          </div>
           </div>
         </div>
           <p>&copy;<strong> Made by:</strong> Bassel Yasser </p>
       </footer>
-      
+
 
 </body>
 

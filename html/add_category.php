@@ -1,4 +1,16 @@
 <?php
+session_start();
+
+// Check if user is logged in and has admin role
+if (empty($_SESSION['id'])) {
+    header("Location: login.php");
+    exit;
+}
+if ($_SESSION['role'] !== 'A') {
+    header("Location: shop.php");
+    exit;
+}
+
 // Connect to your database (replace DB_HOST, DB_USER, DB_PASSWORD, and DB_NAME with your actual database credentials)
 $conn = new mysqli('localhost', 'root', '', 'book_store');
 
